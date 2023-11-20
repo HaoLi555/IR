@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>2022秋信息检索名言检索</title>
+</head>
+<script src="/static/semantic_ui_css/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="/static/semantic_ui_css/semantic.min.css" type="text/css">
+<script type="text/javascript" src="/static/semantic_ui_css/semantic.min.js"></script>
+<style>
+    .title {
+        font-family: 楷体, STKaiti, serif !important;
+        font-size: 2em;
+        font-weight: bold;
+        padding-top: 1em;
+        padding-bottom: 0.3em;
+    }
+
+    .quote_content {
+        color: black;
+        font-family: 楷体, STKaiti, serif;
+        font-size: 1.5em;
+        font-weight: normal;
+        text-align: left;
+    }
+
+    .quote_author {
+        font-family: 楷体, STKaiti, serif;
+        font-size: large;
+    }
+
+    .tight {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    body .ui.cards > .card {
+        box-shadow: none;
+    }
+</style>
+
+<body>
+<div class="ui fluid one column stackable center aligned page grid">
+    <div class="ui row">
+        <p class="title">名言检索</p>
+    </div>
+    <div class="ui fluid row" style="margin-bottom: 2em">
+        <form method="post" style="width: 48em;max-width: 95%">
+            {% csrf_token %}
+            <div class="ui fluid big icon input">
+                <input type="text" placeholder="输入查询" id="query" name="query"
+                       value="{{ place_holder }}" autocomplete="off">
+
+                <i class="search icon"></i>
+            </div>
+        </form>
+    </div>
+
+    {% if results %}
+        <div class="ui one column divided grid" style="width: 60em; max-width: 95%">
+            {% for result in results %}
+                <div class="ui row tight">
+                    <div class="ui cards one column tight">
+                        <div class="card tight">
+                            <div class="content">
+                                <div class="description">
+                                    <p class="quote_content">{{ result.content }}</p>
+                                </div>
+                                <span class="right floated">
+                                    <span class="quote_author">
+                                        {% if result.author %}
+                                            —— {{ result.author }}
+                                        {% endif %}
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if not forloop.last %}
+                    <div class="ui divider"></div>
+                {% endif %}
+
+            {% endfor %}
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
