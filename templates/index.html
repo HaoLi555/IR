@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-    <title>2022秋信息检索名言检索</title>
+    <title>法律文书检索系统</title>
 </head>
 <script src="/static/semantic_ui_css/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="/static/semantic_ui_css/semantic.min.css" type="text/css">
@@ -44,7 +44,7 @@
 <body>
 <div class="ui fluid one column stackable center aligned page grid">
     <div class="ui row">
-        <p class="title">名言检索</p>
+        <p class="title">法律文书检索</p>
     </div>
     <div class="ui fluid row" style="margin-bottom: 2em">
         <form method="post" style="width: 48em;max-width: 95%">
@@ -70,9 +70,7 @@
                                 </div>
                                 <span class="right floated">
                                     <span class="quote_author">
-                                        {% if result.author %}
-                                            —— {{ result.author }}
-                                        {% endif %}
+                                        <a href="{% url 'app:detail' result.id%}">阅读全文</a>
                                     </span>
                                 </span>
                             </div>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>案件全文</title>
+</head>
+<script src="/static/semantic_ui_css/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="/static/semantic_ui_css/semantic.min.css" type="text/css">
+<script type="text/javascript" src="/static/semantic_ui_css/semantic.min.js"></script>
+<style>
+    .title {
+        font-family: 楷体, STKaiti, serif !important;
+        font-size: 2em;
+        font-weight: bold;
+        padding-top: 1em;
+        padding-bottom: 0.3em;
+    }
+
+    .quote_content {
+        color: black;
+        font-family: 楷体, STKaiti, serif;
+        font-size: 1.5em;
+        font-weight: normal;
+        text-align: left;
+    }
+
+    .quote_author {
+        font-family: 楷体, STKaiti, serif;
+        font-size: large;
+    }
+
+    .tight {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    body .ui.cards > .card {
+        box-shadow: none;
+    }
+</style>
+
+<body>
+<div class="ui fluid one column stackable center aligned page grid">
+    <div class="ui row">
+        <p class="title">案件全文</p>
+    </div>
+
+    {% if result %}
+        <div class="ui one column divided grid" style="width: 60em; max-width: 95%">
+            <div class="ui row tight">
+                <div class="ui cards one column tight">
+                    <div class="card tight">
+                        <div class="content">
+                            <div class="description">
+                                <p class="quote_content">{{ result.content }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
